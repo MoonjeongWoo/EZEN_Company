@@ -1,124 +1,181 @@
 'use client';
 
-import React from 'react';
-// import Image from 'next/image';
+import { motion } from 'framer-motion';
 import AccessibilityControls from './components/AccessibilityControls';
 import AccessibleText from './components/AccessibleText';
 
 export default function Home() {
+  
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5 }
+  };
+
+  const scaleOnHover = {
+    whileHover: { scale: 1.05 },
+    whileTap: { scale: 0.95 }
+  };
+
   return (
-    <div className="flex-1 p-8">
-      {/* 접근성 컨트롤 추가 */}
+    <div className="min-h-screen w-full overflow-x-hidden bg-black">
       <AccessibilityControls />
-      
-      {/* 히어로 섹션 */}
-      <section className="mb-16 text-center">
-        <div className="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-24 px-6 rounded-lg shadow-lg">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">EZEN Heavy Equipment</h1>
-          <p className="text-2xl md:text-3xl mb-10 leading-relaxed">글로벌 건설 중장비 수출 전문 기업</p>
-          <p className="text-xl md:text-2xl mb-10 leading-relaxed">Global Exporter of High-Quality Construction Equipment</p>
-          <button className="bg-white text-blue-700 text-xl font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition">
-            더 알아보기 / Learn More
-          </button>
-        </div>
-      </section>
+    
+      <div className="pt-20 w-full">
+        {/* 히어로 섹션 */}
+        <motion.section 
+          className="relative h-[80vh] w-full flex items-center justify-center bg-gradient-to-b from-black via-gray-900 to-black text-[#D4AF37]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          {/* 배경 곡선 효과 */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute bottom-0 w-full h-32 bg-gradient-to-r from-[#D4AF37]/20 to-transparent transform rotate-2"></div>
+            <div className="absolute bottom-10 w-full h-32 bg-gradient-to-l from-[#D4AF37]/10 to-transparent transform -rotate-2"></div>
+          </div>
 
-      {/* 회사 소개 섹션 */}
-      <section className="mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">회사 소개 / Company Introduction</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <div>
-            <AccessibleText size="large" variant="bold">
-              EZEN Heavy Equipment은 고품질 건설 중장비의 글로벌 수출 기업으로, 전 세계 고객에게 신뢰할 수 있는 기계를 공급하는 전문 회사입니다.
-              건설 및 수출 산업에서의 오랜 경험을 바탕으로 굴착기, 불도저, 휠로더, 크레인, 덤프트럭 등 다양한 중장비를 공급합니다.
-            </AccessibleText>
-            <div className="mb-6"></div>
-            <AccessibleText size="large">
-              EZEN Heavy Equipment is a global exporter of high-quality construction heavy equipment, specializing in delivering reliable machinery to clients worldwide. With years of experience in the construction and export industries, we supply a wide range of heavy equipment including excavators, bulldozers, wheel loaders, cranes, dump trucks, and more.
-            </AccessibleText>
+          <div className="text-center z-10">
+            <motion.h1 
+              className="text-5xl md:text-7xl font-bold mb-6 tracking-wider"
+              {...fadeInUp}
+            >
+              이젠(EZEN)무역
+            </motion.h1>
+            <motion.p 
+              className="text-2xl md:text-3xl mb-8 text-[#D4AF37]/90"
+              {...fadeInUp}
+            >
+              건설장비 수출전문기업
+            </motion.p>
+            <motion.p 
+              className="text-xl md:text-2xl mb-12 text-[#D4AF37]/80"
+              {...fadeInUp}
+            >
+              Global Construction Equipment Export Specialist
+            </motion.p>
+            <motion.button 
+              className="bg-[#D4AF37] text-black text-xl font-bold py-4 px-12 rounded-full hover:bg-[#FFD700] transition-colors"
+              {...scaleOnHover}
+            >
+              더 알아보기 / Learn More
+            </motion.button>
           </div>
-          <div className="bg-gray-200 rounded-lg flex items-center justify-center min-h-[250px]">
-            <p className="text-xl text-gray-600 italic">중장비 이미지 / Equipment Image</p>
-            {/* 실제 이미지가 있다면 아래 주석을 해제하고 경로를 수정하세요 */}
-            {/* <Image src="/heavy-equipment.jpg" alt="Heavy Equipment" width={500} height={300} className="rounded-lg" /> */}
-          </div>
-        </div>
-      </section>
+        </motion.section>
 
-      {/* 주요 서비스 섹션 */}
-      <section className="mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">취급 장비 / Our Equipment</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 mb-6">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-8 h-8">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+        {/* 회사 개요 섹션 */}
+        <motion.section 
+          className="py-20 px-4 sm:px-6 lg:px-8 w-full bg-black"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="w-full max-w-7xl mx-auto">
+            <h2 className="text-4xl font-bold text-center mb-16 text-[#D4AF37]">회사 개요 / Company Overview</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              <motion.div 
+                className="bg-gray-900 p-8 rounded-xl border border-[#D4AF37]/20"
+                whileHover={{ y: -10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AccessibleText className="text-[#D4AF37]" size="large" variant="bold">
+                  EZEN Heavy Equipment은 고품질 건설 중장비의 글로벌 수출 기업으로, 전 세계 고객에게 신뢰할 수 있는 기계를 공급하는 전문 회사입니다.
+                </AccessibleText>
+              </motion.div>
+              <motion.div 
+                className="bg-gray-900 p-8 rounded-xl border border-[#D4AF37]/20"
+                whileHover={{ y: -10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AccessibleText className="text-gray-300" size="large">
+                  EZEN Heavy Equipment is a global exporter of high-quality construction equipment, specializing in delivering reliable machinery worldwide.
+                </AccessibleText>
+              </motion.div>
             </div>
-            <h3 className="text-2xl font-semibold mb-4">굴착기 / Excavators</h3>
-            <AccessibleText>
-              다양한 크기와 사양의 굴착기를 제공합니다. 신형 및 중고 모델 모두 가능합니다.
-            </AccessibleText>
-            <div className="mb-2"></div>
-            <AccessibleText>
-              We offer excavators of various sizes and specifications. Both new and used models available.
-            </AccessibleText>
           </div>
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 mb-6">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-8 h-8">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <h3 className="text-2xl font-semibold mb-4">휠로더 / Wheel Loaders</h3>
-            <AccessibleText>
-              효율적인 자재 운반을 위한 다양한 휠로더를 공급합니다. 경제적이고 내구성이 뛰어납니다.
-            </AccessibleText>
-            <div className="mb-2"></div>
-            <AccessibleText>
-              Supply various wheel loaders for efficient material handling. Economical and durable.
-            </AccessibleText>
-          </div>
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 mb-6">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-8 h-8">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-            </div>
-            <h3 className="text-2xl font-semibold mb-4">크레인 / Cranes</h3>
-            <AccessibleText>
-              다양한 크기와 용량의 크레인을 제공합니다. 건설 현장의 중요한 장비입니다.
-            </AccessibleText>
-            <div className="mb-2"></div>
-            <AccessibleText>
-              We provide cranes of various sizes and capacities. Essential equipment for construction sites.
-            </AccessibleText>
-          </div>
-        </div>
-      </section>
+        </motion.section>
 
-      {/* 서비스 지역 섹션 */}
-      <section>
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">서비스 지역 / Service Regions</h2>
-        <div className="flex flex-wrap justify-center gap-10">
-          <div className="w-64 h-32 bg-white shadow-md rounded flex flex-col items-center justify-center p-4">
-            <span className="text-xl font-semibold text-blue-700">중동 / Middle East</span>
-            <span className="text-lg text-gray-600 mt-2">UAE, 사우디아라비아, 카타르</span>
+        {/* 사업 영역 섹션 */}
+        <motion.section 
+          className="py-20 bg-gray-900 w-full"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-4xl font-bold text-center mb-16 text-[#D4AF37]">사업 영역 / Business Areas</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: '굴착기 / Excavators',
+                  description: '다양한 크기와 사양의 굴착기를 제공합니다.',
+                  icon: '🚜'
+                },
+                {
+                  title: '휠로더 / Wheel Loaders',
+                  description: '효율적인 자재 운반을 위한 다양한 휠로더를 공급합니다.',
+                  icon: '🚛'
+                },
+                {
+                  title: '크레인 / Cranes',
+                  description: '다양한 크기와 용량의 크레인을 제공합니다.',
+                  icon: '🏗️'
+                }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-black p-8 rounded-xl border border-[#D4AF37]/20"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  whileHover={{ y: -10, borderColor: '#D4AF37' }}
+                  viewport={{ once: true }}
+                >
+                  <div className="text-5xl mb-4">{item.icon}</div>
+                  <h3 className="text-2xl font-bold mb-4 text-[#D4AF37]">{item.title}</h3>
+                  <AccessibleText className="text-gray-300">{item.description}</AccessibleText>
+                </motion.div>
+              ))}
+            </div>
           </div>
-          <div className="w-64 h-32 bg-white shadow-md rounded flex flex-col items-center justify-center p-4">
-            <span className="text-xl font-semibold text-blue-700">동남아시아 / Southeast Asia</span>
-            <span className="text-lg text-gray-600 mt-2">베트남, 필리핀, 인도네시아</span>
+        </motion.section>
+
+        {/* 서비스 지역 섹션 */}
+        <motion.section 
+          className="py-20 w-full bg-black"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-4xl font-bold text-center mb-16 text-[#D4AF37]">서비스 지역 / Service Regions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                { region: '중동 / Middle East', countries: 'UAE, 사우디아라비아, 카타르' },
+                { region: '동남아시아 / Southeast Asia', countries: '베트남, 필리핀, 인도네시아' },
+                { region: '아프리카 / Africa', countries: '나이지리아, 케냐, 남아공' },
+                { region: '남미 / South America', countries: '브라질, 칠레, 콜롬비아' }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-gray-900 p-8 rounded-xl border border-[#D4AF37]/20"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05, borderColor: '#D4AF37' }}
+                  viewport={{ once: true }}
+                >
+                  <h3 className="text-xl font-bold text-[#D4AF37] mb-4">{item.region}</h3>
+                  <p className="text-gray-300">{item.countries}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
-          <div className="w-64 h-32 bg-white shadow-md rounded flex flex-col items-center justify-center p-4">
-            <span className="text-xl font-semibold text-blue-700">아프리카 / Africa</span>
-            <span className="text-lg text-gray-600 mt-2">나이지리아, 케냐, 남아공</span>
-          </div>
-          <div className="w-64 h-32 bg-white shadow-md rounded flex flex-col items-center justify-center p-4">
-            <span className="text-xl font-semibold text-blue-700">남미 / South America</span>
-            <span className="text-lg text-gray-600 mt-2">브라질, 칠레, 콜롬비아</span>
-          </div>
-        </div>
-      </section>
+        </motion.section>
+      </div>
     </div>
   );
 } 
